@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Calculadora</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <script src='Test1.js'></script>
+</head>
+<body>
+    <p>Cuando termine de escribir la ecuación presione Enter</p>
+    <input id="expr" style="width: 50%; font-family: monospace" value="1+2" onchange="perform();"><p>
+        <pre id="out"></pre>
+    <br>
+
+    
+    <table style="border: 1px solid black; border-collapse: collapse;">
+        <tr>
+            <th>Ejemplo</th>
+            <th>Resultado</th>
+        </tr>
+
+        <tr style="border: 1px solid black; border-collapse: collapse;">
+            <td style="border: 1px solid black; border-collapse: collapse;">
+                4-7+8+9/2*3
+            </td>
+            <td style="border: 1px solid black; border-collapse: collapse;">
+                18.5
+            </td>
+        </tr>
+
+        <tr style="border: 1px solid black; border-collapse: collapse;">
+            <td style="border: 1px solid black; border-collapse: collapse;">
+                23-14+123/3*49
+            </td>
+            <td>
+                2018
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>
