@@ -1,14 +1,124 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='/src/main.js'></script>
+    <title>Tabla</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/main.css">
 </head>
+
 <body>
-    <h1>Hi there!!</h1>
+
+    <div class="container h-50">
+        <div class="row">
+            <h1>Classroom model:</h1>
+            <table class="table table-striped" id="tabla1">
+            </table>
+
+
+            
+            <h1>Student model:</h1>
+            <table class="table table-striped" id="tabla2">
+                
+            </table>
+
+            <button type="button" id="boton1" class="open-button btn btn-primary" onclick="openForm()">Nuevo estudiante</button>
+                
+                <div class="form-popup" id="myForm">
+                    <form class="form-container">
+                      <h2>Añadir nuevo estudiante</h2>
+                  
+                      <label for="name"><b>Nombre</b></label>
+                      <input type="text" placeholder="Introduzca nombre" name="name" required>
+                  
+                      <label for="age"><b>Edad</b></label>
+                      <input type="number" placeholder="Introduzca edad" name="age" required>
+                  
+                      <button type="submit" class="btn" onsubmit="agregarEstudiante()">Añadir</button>
+                      <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+                    </form>
+                  </div>
+
+            <button type="button" id="boton1" class="open-button btn btn-primary" onclick="openForm()">Nuevo estudiante</button>
+                
+                <div class="form-popup" id="myForm">
+                    <form class="form-container">
+                      <h1>Añadir nuevo estudiante</h1>
+                  
+                      <label for="name"><b>Nombre</b></label>
+                      <input type="text" placeholder="Introduzca nombre" name="name" required>
+                  
+                      <label for="age"><b>Edad</b></label>
+                      <input type="number" placeholder="Introduzca edad" name="age" required>
+                  
+                      <button type="submit" class="btn" onsubmit="agregarEstudiante()">Añadir</button>
+                      <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+                    </form>
+                  </div>
+            
+        </div>
+    </div>
+
+    <script>
+        listarClases();
+        listarEstudiantes();
+
+        function agregarEstudiante() {
+            
+            const datos = new URLSearchParams(FormData(document.getElementById('myForm')));
+            let url = 'http://localhost:3000/api/student';
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(datos)
+            })
+                .then(response => response.json())
+                .then(datos => listarArticulos());
+        }
+        
+
+        function listarClases() {
+            fetch("http://localhost:3000/api/classroom")
+                .then(response => response.json())
+                .then(datos => {
+                    let cad = '<tr><th>Class</th><th>Order</th><th>Number of Students</th><th>Active</th><th>Students</th></tr>';
+                    for (let classrooms of datos.classroom) {
+                        cad += `<tr><td>${classrooms.Class}</td>
+                                <td>${classrooms.Order}</td>
+                                <td>${classrooms.numberOfStudents}</td>
+                                <td>${classrooms.active}</td>
+                                <td>${classrooms.students}</td></tr>`;
+                    }
+                    document.getElementById("tabla1").innerHTML = cad;
+                });
+        }
+
+        function listarEstudiantes() {
+            fetch("http://localhost:3000/api/student")
+                .then(response => response.json())
+                .then(datos => {
+                    let cad = '<tr><th>Name</th><th>Age</th><th>Active</th></tr>';
+                    for (let students of datos.student) {
+                        cad += `<tr><td>${students.name}</td>
+                                <td>${students.age}</td>
+                                <td>${students.active}</td></tr>`;
+                    }
+                    document.getElementById("tabla2").innerHTML = cad;
+                });
+        }
+
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
 </body>
+
 </html>
