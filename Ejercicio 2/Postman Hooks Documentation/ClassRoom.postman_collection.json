@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "b737eb8e-58fe-49ab-b6bc-3e48dd6d4e8a",
+		"name": "ClassRoom",
+		"description": "Información pertinente:\n\n-Los datos se pueden enviar tanto en forma de JSON como X-WWW-Form-URLencoded.\n\n-Cambiar \"localhost\" por el IP o URL en donde se decida desplegar la aplicación.\n\n-Para añadir más estudiantes a una clase hay que hacerlo a través de Actualizar clase.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener clases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/classroom",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"classroom"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener clase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/classroom/id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"classroom",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir clase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Class",
+							"value": "3106",
+							"type": "text"
+						},
+						{
+							"key": "Order",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "numberOfStudents",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "active",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "students",
+							"value": "62ed3ac1e46da79423760cb3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/classroom",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"classroom"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar clase",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Class",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "Order",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "numberOfStudents",
+							"value": "70",
+							"type": "text"
+						},
+						{
+							"key": "active",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "students",
+							"value": "62ed3a5de46da79423760cad",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/classroom/62ed3d729e62fb2fb8084478",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"classroom",
+						"62ed3d729e62fb2fb8084478"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar clase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/classroom/id",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"classroom",
+						"id"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
